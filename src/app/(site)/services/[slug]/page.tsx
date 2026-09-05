@@ -8,9 +8,14 @@ import { getServiceBySlug, getServices, getSettings } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { TIME_SLOTS } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
-
 type Params = { params: Promise<{ slug: string }> };
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const services = await getServices();
+  return services.map((service) => ({ slug: service.slug }));
+}
 
 export async function generateMetadata({ params }: Params) {
   const { slug } = await params;

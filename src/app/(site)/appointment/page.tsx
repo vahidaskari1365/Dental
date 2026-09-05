@@ -7,8 +7,6 @@ import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { TIME_SLOTS } from "@/lib/site";
 import { toFaDigits } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = buildMetadata({
   title: "رزرو نوبت آنلاین دندانپزشکی | مهرادنت تهران",
   description:

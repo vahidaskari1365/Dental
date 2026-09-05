@@ -10,7 +10,7 @@ import {
   WhatsappIcon,
 } from "./icons";
 import { NAV_ITEMS, type SiteSettings } from "@/lib/site";
-import type { Service } from "@/db/schema";
+import type { Service } from "@/lib/data";
 
 export function SiteFooter({ settings, services }: { settings: SiteSettings; services: Service[] }) {
   const year = new Intl.DateTimeFormat("fa-IR", { year: "numeric" }).format(new Date());

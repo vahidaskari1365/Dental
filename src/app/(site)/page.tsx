@@ -27,8 +27,6 @@ import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { TIME_SLOTS } from "@/lib/site";
 import { formatFaDate, toFaDigits } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = buildMetadata({
   title: "کلینیک دندانپزشکی مهرادنت | ایمپلنت، ارتودنسی و لمینت در تهران",
   description:

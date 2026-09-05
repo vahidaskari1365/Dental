@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { localReply } from "@/lib/chat";
 import { ChatIcon, CloseIcon } from "./icons";
 
 type Message = { role: "user" | "assistant"; content: string };
@@ -28,37 +29,18 @@ export function ChatWidget({ clinicName }: { clinicName: string }) {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, open]);
 
-  async function send(text: string) {
+  function send(text: string) {
     const question = text.trim();
     if (!question || loading) return;
-    const nextMessages: Message[] = [...messages, { role: "user", content: question }];
-    setMessages(nextMessages);
+    setMessages((current) => [...current, { role: "user", content: question }]);
     setInput("");
     setLoading(true);
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages.slice(-8) }),
-      });
-      const data = (await response.json()) as { reply?: string };
-      setMessages((current) => [
-        ...current,
-        {
-          role: "assistant",
-          content:
-            data.reply ??
-            "پاسخی دریافت نشد. لطفاً با پذیرش کلینیک تماس بگیرید تا سریع‌تر راهنمایی شوید.",
-        },
-      ]);
-    } catch {
-      setMessages((current) => [
-        ...current,
-        { role: "assistant", content: "ارتباط برقرار نشد. لطفاً دوباره تلاش کنید یا تلفنی تماس بگیرید." },
-      ]);
-    } finally {
+    const reply = localReply(question);
+    // تاخیر کوتاه برای حفظ حس «در حال نوشتن»
+    window.setTimeout(() => {
+      setMessages((current) => [...current, { role: "assistant", content: reply }]);
       setLoading(false);
-    }
+    }, 600);
   }
 
   return (

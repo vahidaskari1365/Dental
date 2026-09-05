@@ -6,8 +6,6 @@ import { getPosts } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { formatFaDate, toFaDigits } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = buildMetadata({
   title: "بلاگ سلامت دهان و دندان | مقالات دندانپزشکی مهرادنت",
   description:

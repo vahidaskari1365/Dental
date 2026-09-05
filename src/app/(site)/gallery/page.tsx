@@ -6,8 +6,6 @@ import { getGalleryCases } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { toFaDigits } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = buildMetadata({
   title: "گالری قبل و بعد درمان | نمونه کارهای واقعی",
   description:

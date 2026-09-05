@@ -6,8 +6,6 @@ import { getTeamMembers } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { toFaDigits } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = buildMetadata({
   title: "تیم پزشکی | متخصصان دندانپزشکی مهرادنت",
   description:

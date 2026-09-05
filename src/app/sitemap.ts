@@ -2,8 +2,6 @@ import type { MetadataRoute } from "next";
 import { getPosts, getServices } from "@/lib/data";
 import { SITE_URL } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [services, posts] = await Promise.all([getServices(), getPosts()]);
   const now = new Date();

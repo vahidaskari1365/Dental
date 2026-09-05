@@ -8,9 +8,14 @@ import { getPostBySlug, getPosts } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata, postJsonLd } from "@/lib/seo";
 import { formatFaDate, toFaDigits } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
-
 type Params = { params: Promise<{ slug: string }> };
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
 
 export async function generateMetadata({ params }: Params) {
   const { slug } = await params;

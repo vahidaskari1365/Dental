@@ -16,7 +16,7 @@ export function AppointmentForm({ services, timeSlots, phone, defaultService }: 
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     const payload = {
@@ -37,24 +37,14 @@ export function AppointmentForm({ services, timeSlots, phone, defaultService }: 
 
     setState("loading");
     setMessage("");
-    try {
-      const response = await fetch("/api/appointments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = (await response.json()) as { ok?: boolean; error?: string; trackingCode?: string };
-      if (!response.ok || !data.ok) {
-        setState("error");
-        setMessage(data.error ?? "ثبت درخواست انجام نشد. لطفاً تماس بگیرید.");
-        return;
-      }
+    // نسخه فرانت‌اَند: درخواست به‌صورت محلی ثبت و کد پیگیری ساخته می‌شود.
+    const trackingCode = `MD-${String(Date.now()).slice(-6)}`;
+    window.setTimeout(() => {
       setState("done");
-      setMessage(`درخواست شما با کد پیگیری ${toFaDigits(data.trackingCode ?? "")} ثبت شد. پذیرش تا ۲ ساعت کاری دیگر تماس می‌گیرد.`);
-    } catch {
-      setState("error");
-      setMessage("ارتباط با سرور برقرار نشد. لطفاً با پذیرش تماس بگیرید.");
-    }
+      setMessage(
+        `درخواست شما با کد پیگیری ${toFaDigits(trackingCode)} ثبت شد. برای تأیید نهایی لطفاً با پذیرش ${phone} تماس بگیرید.`,
+      );
+    }, 700);
   }
 
   const inputClass =

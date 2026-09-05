@@ -6,8 +6,6 @@ import { JsonLd } from "@/components/ui";
 import { getServices, getSettings } from "@/lib/data";
 import { clinicJsonLd } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
-
 export default async function SiteLayout({ children }: { children: ReactNode }) {
   const [settings, services] = await Promise.all([getSettings(), getServices()]);
 

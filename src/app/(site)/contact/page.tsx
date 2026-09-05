@@ -4,8 +4,6 @@ import { JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
 import { getSettings } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = buildMetadata({
   title: "تماس با ما | آدرس، تلفن و نقشه کلینیک مهرادنت",
   description:

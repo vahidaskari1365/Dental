@@ -1,80 +1,12 @@
-import { NextResponse } from "next/server";
-import { getServices, getSettings } from "@/lib/data";
-import { TIME_SLOTS } from "@/lib/site";
-
-type ChatMessage = { role: "user" | "assistant"; content: string };
+import { getChatContext } from "./data";
 
 /**
- * دستیار هوشمند پذیرش (الهام‌گرفته از freellmapi):
- * اگر کلید یک سرویس سازگار با OpenAI تنظیم شده باشد از مدل استفاده می‌شود،
- * در غیر این صورت پاسخ از پایگاه دانش محلی ساخته می‌شود تا سرویس هرگز از کار نیفتد.
+ * پاسخ‌گوی خودکار پذیرش (کاملاً سمت مرورگر — بدون هیچ بک‌اندی).
+ * سؤال کاربر با چند الگوی ساده تطبیق داده می‌شود و پاسخ از اطلاعات ثابت کلینیک ساخته می‌شود.
  */
-export async function POST(request: Request) {
-  let messages: ChatMessage[] = [];
-  try {
-    const body = (await request.json()) as { messages?: ChatMessage[] };
-    messages = Array.isArray(body.messages) ? body.messages.slice(-8) : [];
-  } catch {
-    messages = [];
-  }
-
-  const lastUserMessage = [...messages].reverse().find((item) => item.role === "user")?.content ?? "";
-  const [settings, services] = await Promise.all([getSettings(), getServices()]);
-
-  const systemPrompt = [
-    `تو دستیار پذیرش «${settings.clinicName}» هستی و به فارسی محترمانه و کوتاه پاسخ می‌دهی.`,
-    `تلفن: ${settings.phone} و ${settings.phone2} | واتس‌اپ: ${settings.whatsapp}`,
-    `آدرس: ${settings.address}`,
-    `ساعات کاری: ${settings.workingHoursWeek} / ${settings.workingHoursThu} / ${settings.workingHoursFri}`,
-    `خدمات و هزینه پایه: ${services
-      .map((service) => `${service.title} (${service.price ?? "استعلام قیمت"})`)
-      .join(" ، ")}`,
-    `بازه‌های نوبت: ${TIME_SLOTS.join(" ، ")}`,
-    `نوبت‌دهی فقط از صفحه /appointment انجام می‌شود؛ کاربر را به همان صفحه یا شماره تماس راهنمایی کن.`,
-    `برای تشخیص و برنامه درمان قطعی همیشه اعلام کن که نیاز به معاینه حضوری است.`,
-  ].join("\n");
-
-  const apiKey =
-    process.env.FREELLM_API_KEY ?? process.env.LLM_API_KEY ?? process.env.OPENAI_API_KEY ?? "";
-  const baseUrl = (process.env.LLM_BASE_URL ?? process.env.FREELLM_BASE_URL ?? "").replace(/\/$/, "");
-  const model = process.env.LLM_MODEL ?? "gpt-4o-mini";
-
-  if (apiKey && baseUrl) {
-    try {
-      const upstream = await fetch(`${baseUrl}/chat/completions`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          model,
-          temperature: 0.4,
-          max_tokens: 400,
-          messages: [{ role: "system", content: systemPrompt }, ...messages],
-        }),
-      });
-      if (upstream.ok) {
-        const data = (await upstream.json()) as {
-          choices?: Array<{ message?: { content?: string } }>;
-        };
-        const reply = data.choices?.[0]?.message?.content?.trim();
-        if (reply) return NextResponse.json({ reply, provider: "llm" });
-      }
-    } catch (error) {
-      console.error("[chat] upstream failed, using local knowledge base", error);
-    }
-  }
-
-  return NextResponse.json({ reply: localReply(lastUserMessage, settings, services) });
-}
-
-function localReply(
-  question: string,
-  settings: Awaited<ReturnType<typeof getSettings>>,
-  services: Awaited<ReturnType<typeof getServices>>,
-) {
-  const q = question.replace(/\u200c/g, " ");
+export function localReply(question: string): string {
+  const { settings, services } = getChatContext();
+  const q = question.replace(/‌/g, " ").trim();
 
   const matched = services.find((service) => {
     const keywords = service.title.split(/\s+/).filter((word) => word.length > 2);
@@ -88,7 +20,7 @@ function localReply(
     return `تعرفه هر خدمت به نوع درمان و مواد مصرفی بستگی دارد. برای دریافت برآورد دقیق، معاینه اولیه (رایگان) لازم است. با پذیرش ${settings.phone} تماس بگیرید.`;
   }
 
-  if (/نوبت|رزرو|وقت|نوبت دهی| appointment/.test(q)) {
+  if (/نوبت|رزرو|وقت|نوبت دهی|appointment/.test(q)) {
     return `رزرو نوبت آنلاین از صفحه «رزرو نوبت» سایت انجام می‌شود: نام، شماره تماس، نوع خدمت، تاریخ و بازه ساعتی. همکاران پذیرش تا ۲ ساعت کاری بعد برای تأیید تماس می‌گیرند. تماس مستقیم: ${settings.phone}`;
   }
 

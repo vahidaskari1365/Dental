@@ -4,8 +4,6 @@ import "./globals.css";
 import { getSettings } from "@/lib/data";
 import { SITE_URL } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
-
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
   return {

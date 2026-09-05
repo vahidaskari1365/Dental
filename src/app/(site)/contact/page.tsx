@@ -39,7 +39,7 @@ export default async function ContactPage() {
         }
       />
 
-      <Section>
+      <Section tone="aurora">
         <div className="grid gap-6 md:grid-cols-3">
           {[
             {
@@ -89,7 +89,7 @@ export default async function ContactPage() {
         </div>
       </Section>
 
-      <Section tone="soft">
+      <Section tone="warm">
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="surface-card overflow-hidden">
             <iframe
@@ -150,7 +150,7 @@ export default async function ContactPage() {
         </div>
       </Section>
 
-      <Section>
+      <Section tone="mint">
         <SectionHeading
           eyebrow="نظرات شما"
           title="تجربه خود را در گوگل ثبت کنید"

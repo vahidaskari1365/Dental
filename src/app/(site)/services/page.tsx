@@ -54,7 +54,7 @@ export default async function ServicesPage() {
         }
       />
 
-      <Section>
+      <Section tone="gradient">
         <div className="grid gap-8 md:grid-cols-2">
           {services.map((service) => (
             <article key={service.slug} className="surface-card overflow-hidden">
@@ -103,7 +103,7 @@ export default async function ServicesPage() {
         </div>
       </Section>
 
-      <Section tone="soft">
+      <Section tone="mint">
         <SectionHeading
           eyebrow="پلن مالی"
           title="پرداخت اقساطی و بیمه تکمیلی"

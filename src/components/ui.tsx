@@ -21,13 +21,20 @@ export function Section({
   children: ReactNode;
   className?: string;
   id?: string;
-  tone?: "light" | "soft" | "night" | "brand";
+  tone?: "light" | "soft" | "night" | "brand" | "gradient" | "aurora" | "warm" | "mint" | "sand";
 }) {
   const tones: Record<string, string> = {
     light: "bg-white",
     soft: "bg-cream-100",
     night: "bg-brand-950 text-white",
     brand: "bg-brand-900 text-white",
+    gradient:
+      "bg-gradient-to-b from-cream-50 via-cream-100/80 to-cream-50",
+    warm: "bg-gradient-to-br from-sand-50 via-cream-100 to-cream-50",
+    mint: "bg-gradient-to-br from-brand-50 via-cream-50 to-cream-100/60",
+    aurora:
+      "bg-gradient-to-br from-brand-50 via-cream-50 to-sand-50",
+    sand: "bg-gradient-to-br from-cream-100 via-sand-50/60 to-cream-50",
   };
   const isDark = tone === "night" || tone === "brand";
 
@@ -49,6 +56,20 @@ export function Section({
           <span
             className="wash -end-24 bottom-0 h-72 w-72 bg-sand-200/50"
             style={{ animationDelay: "7s" }}
+            aria-hidden
+          />
+        </>
+      ) : tone === "gradient" || tone === "warm" || tone === "mint" || tone === "aurora" || tone === "sand" ? (
+        <>
+          <span className="wash -start-24 -top-20 h-80 w-80 bg-brand-200/40" aria-hidden />
+          <span
+            className="wash -end-24 bottom-0 h-72 w-72 bg-sand-200/40"
+            style={{ animationDelay: "6s" }}
+            aria-hidden
+          />
+          <span
+            className="wash start-1/3 top-1/2 h-64 w-64 bg-brand-100/50"
+            style={{ animationDelay: "3s" }}
             aria-hidden
           />
         </>

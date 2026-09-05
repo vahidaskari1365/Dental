@@ -60,7 +60,7 @@ export default async function TeamPage() {
         }
       />
 
-      <Section>
+      <Section tone="gradient">
         <div className="grid gap-8 md:grid-cols-2">
           {members.map((member) => (
             <article key={member.slug} className="surface-card grid overflow-hidden sm:grid-cols-[0.8fr_1.2fr]">
@@ -99,7 +99,7 @@ export default async function TeamPage() {
         </div>
       </Section>
 
-      <Section tone="soft">
+      <Section tone="mint">
         <SectionHeading
           eyebrow="استانداردهای کلینیک"
           title="چرا درمان در مهرادنت امن‌تر است؟"

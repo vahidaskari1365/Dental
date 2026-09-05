@@ -115,8 +115,8 @@ export function SiteHeader({
           className={cn(
             "mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-[1.6rem] border px-3 py-2.5 backdrop-blur-xl transition-all duration-500",
             scrolled
-              ? "border-mint-200 bg-white/88 shadow-[0_20px_46px_-30px_rgba(9,68,48,0.6)]"
-              : "border-white/60 bg-white/55 shadow-[0_10px_30px_-24px_rgba(9,68,48,0.45)]",
+              ? "border-mint-300 bg-mint-100/90 shadow-[0_20px_46px_-30px_rgba(9,68,48,0.6)]"
+              : "border-mint-200/70 bg-mint-50/70 shadow-[0_10px_30px_-24px_rgba(9,68,48,0.45)]",
           )}
         >
           {/* لوگو */}
@@ -150,7 +150,7 @@ export function SiteHeader({
                     "relative rounded-full px-3.5 py-2 text-[13px] font-bold transition duration-300",
                     active
                       ? "bg-gradient-to-br from-brand-600 to-brand-800 text-white shadow-[0_8px_18px_-10px_rgba(13,132,85,0.9)]"
-                      : "text-ink-700 hover:bg-white hover:text-brand-700",
+                      : "text-ink-700 hover:bg-mint-100 hover:text-brand-700",
                   )}
                 >
                   {item.label}
@@ -163,14 +163,14 @@ export function SiteHeader({
           <div className="flex items-center gap-2">
             <a
               href={`tel:${phone}`}
-              className="hidden h-10 items-center gap-2 rounded-full border border-mint-300 bg-white/80 px-4 text-[13px] font-bold text-brand-800 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-mint-50 md:flex"
+              className="hidden h-10 items-center gap-2 rounded-full border border-mint-300 bg-mint-50/85 px-4 text-[13px] font-bold text-brand-800 transition hover:-translate-y-0.5 hover:border-brand-400 hover:bg-mint-50 md:flex"
             >
               <PhoneIcon className="h-4 w-4 text-brand-600" />
               <span dir="ltr">{phone}</span>
             </a>
             <a
               href={`tel:${phone}`}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-mint-300 bg-white/80 text-brand-700 md:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-mint-300 bg-mint-50/85 text-brand-700 md:hidden"
               aria-label="تماس با کلینیک"
             >
               <PhoneIcon className="h-4 w-4" />
@@ -185,7 +185,7 @@ export function SiteHeader({
             <button
               type="button"
               onClick={() => setOpen((value) => !value)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-mint-300 bg-white/80 text-brand-800 transition hover:bg-mint-50 lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-mint-300 bg-mint-50/85 text-brand-800 transition hover:bg-mint-50 lg:hidden"
               aria-label={open ? "بستن منو" : "باز کردن منو"}
               aria-expanded={open}
             >
@@ -229,7 +229,7 @@ export function SiteHeader({
                     <Link
                       href={item.href}
                       className={cn(
-                        "flex items-center justify-between rounded-2xl border bg-white/90 px-5 py-4 text-xl font-black shadow-mint-sm transition",
+                        "flex items-center justify-between rounded-2xl border bg-mint-50/92 px-5 py-4 text-xl font-black shadow-mint-sm transition",
                         active
                           ? "border-brand-400 bg-gradient-to-l from-brand-600 to-brand-800 text-white"
                           : "border-mint-200 text-ink-900",

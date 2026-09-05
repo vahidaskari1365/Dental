@@ -229,7 +229,7 @@ export function BackToTop() {
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="بازگشت به بالای صفحه"
       className={cn(
-        "fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-mint-300 bg-white/90 text-brand-700 shadow-mint-md backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:bg-brand-600 hover:text-white",
+        "fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-mint-300 bg-mint-50/92 text-brand-700 shadow-mint-md backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:bg-brand-600 hover:text-white",
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0",
       )}
     >

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CalendarIcon, CheckIcon } from "@/components/icons";
-import { JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
+import {JsonLd, PageHero, Section, SectionHeading, Breadcrumb } from "@/components/ui";
 import { getTeamMembers } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { toFaDigits } from "@/lib/utils";
@@ -49,15 +49,7 @@ export default async function TeamPage() {
         eyebrow={`${toFaDigits(members.length)} متخصص بورد‌دار`}
         title="تیم پزشکی مهرادنت"
         description="هر تخصص، یک متخصص مسئول؛ تا درمان شما بدون ارجاع بین مطب‌های مختلف کامل شود."
-        breadcrumb={
-          <nav className="text-sm text-brand-200" aria-label="مسیر صفحه">
-            <Link href="/" className="transition hover:text-white">
-              خانه
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">تیم پزشکی</span>
-          </nav>
-        }
+        breadcrumb={<Breadcrumb current="تیم پزشکی" />}
       />
 
       <Section tone="gradient">

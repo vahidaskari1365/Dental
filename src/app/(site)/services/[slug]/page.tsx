@@ -3,9 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppointmentForm } from "@/components/appointment-form";
 import { ArrowIcon, CalendarIcon, CheckIcon, ClockIcon, ServiceIcon } from "@/components/icons";
-import { JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
+import {JsonLd, PageHero, Section, SectionHeading, Breadcrumb } from "@/components/ui";
 import { getServiceBySlug, getServices, getSettings } from "@/lib/data";
-import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, buildMetadata, serviceJsonLd } from "@/lib/seo";
 import { TIME_SLOTS } from "@/lib/site";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -55,39 +55,13 @@ export default async function ServiceDetailPage({ params }: Params) {
           { name: service.title, path: `/services/${service.slug}` },
         ])}
       />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "MedicalProcedure",
-          name: service.title,
-          description: service.description,
-          procedureType: "https://schema.org/TherapeuticProcedure",
-          bodyLocation: "Oral cavity",
-          howPerformed: service.features?.join(" ، "),
-          preparation: "معاینه اولیه و در صورت نیاز رادیوگرافی دیجیتال",
-          followup: "پیگیری تلفنی ۷ روز اول و کنترل ۶ ماهه",
-          performer: { "@type": "Dentist", name: settings.clinicName },
-          url: `/services/${service.slug}`,
-        }}
-      />
+      <JsonLd data={serviceJsonLd(service)} />
 
       <PageHero
         eyebrow={service.duration ?? undefined}
         title={service.title}
         description={service.summary}
-        breadcrumb={
-          <nav className="text-sm text-brand-200" aria-label="مسیر صفحه">
-            <Link href="/" className="transition hover:text-white">
-              خانه
-            </Link>
-            <span className="mx-2">/</span>
-            <Link href="/services" className="transition hover:text-white">
-              خدمات
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">{service.title}</span>
-          </nav>
-        }
+        breadcrumb={<Breadcrumb current={service.title} />}
       />
 
       <Section>

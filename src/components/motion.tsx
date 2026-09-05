@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ArrowIcon } from "./icons";
 import { cn, toFaDigits } from "@/lib/utils";
 
 /** ظاهر شدن نرم محتوا هنگام ورود به دید کاربر */
@@ -16,15 +17,13 @@ export function Reveal({
   as?: "div" | "li" | "article" | "span";
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(
+    () => typeof IntersectionObserver === "undefined",
+  );
 
   useEffect(() => {
     const element = ref.current;
-    if (!element) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
-    }
+    if (!element || visible) return;
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
@@ -36,7 +35,7 @@ export function Reveal({
     );
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [visible]);
 
   return (
     <Tag
@@ -63,15 +62,12 @@ export function CountUp({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
-  const [display, setDisplay] = useState(0);
+  const hasIO = typeof IntersectionObserver !== "undefined";
+  const [display, setDisplay] = useState(hasIO ? 0 : value);
 
   useEffect(() => {
     const element = ref.current;
-    if (!element) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setDisplay(value);
-      return;
-    }
+    if (!element || !hasIO) return;
     const observer = new IntersectionObserver(
       (entries) => {
         if (!entries.some((entry) => entry.isIntersecting) || started.current) return;
@@ -89,7 +85,7 @@ export function CountUp({
     );
     observer.observe(element);
     return () => observer.disconnect();
-  }, [value, duration]);
+  }, [value, duration, hasIO]);
 
   return (
     <span ref={ref} className={className}>
@@ -131,7 +127,7 @@ export function Spotlight({ className }: { className?: string }) {
       aria-hidden
       className={cn("pointer-events-none absolute inset-0 z-10", className)}
       style={{
-        background: `radial-gradient(560px circle at ${pos.x} ${pos.y}, rgba(34,211,238,0.13), transparent 46%)`,
+        background: `radial-gradient(560px circle at ${pos.x} ${pos.y}, rgba(28,161,106,0.16), transparent 46%)`,
         transition: "background 0.18s linear",
       }}
     />
@@ -182,6 +178,113 @@ export function PointerParallax({
         transform: `translate3d(${offset.x.toFixed(2)}px, ${offset.y.toFixed(2)}px, 0)`,
         transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
       }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/** نوار پیشرفت مطالعه/اسکرول در بالای صفحه */
+export function ScrollProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <span
+      className="scroll-progress"
+      style={{ transform: `scaleX(${progress})` }}
+      aria-hidden
+    />
+  );
+}
+
+/** دکمه شناور بازگشت به بالای صفحه */
+export function BackToTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 700);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <button
+      type="button"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="بازگشت به بالای صفحه"
+      className={cn(
+        "fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-mint-300 bg-white/90 text-brand-700 shadow-mint-md backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:bg-brand-600 hover:text-white",
+        visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0",
+      )}
+    >
+      <ArrowIcon className="h-5 w-5 rotate-90" />
+    </button>
+  );
+}
+
+/** کارت با کج‌شدن سه‌بعدی دنبال‌کننده نشانگر (فقط پوینتر دقیق) */
+export function TiltCard({
+  children,
+  className,
+  max = 7,
+}: {
+  children: ReactNode;
+  className?: string;
+  max?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    if (typeof window === "undefined" || !window.matchMedia("(pointer: fine)").matches) return;
+
+    let frame: number | null = null;
+
+    const onMove = (event: PointerEvent) => {
+      const rect = element.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width - 0.5;
+      const py = (event.clientY - rect.top) / rect.height - 0.5;
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        element.style.transform = `perspective(900px) rotateX(${(-py * max).toFixed(2)}deg) rotateY(${(px * max).toFixed(2)}deg) translateY(-4px)`;
+      });
+    };
+
+    const onLeave = () => {
+      if (frame) cancelAnimationFrame(frame);
+      element.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
+    };
+
+    element.addEventListener("pointermove", onMove);
+    element.addEventListener("pointerleave", onLeave);
+    return () => {
+      element.removeEventListener("pointermove", onMove);
+      element.removeEventListener("pointerleave", onLeave);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [max]);
+
+  return (
+    <div
+      ref={ref}
+      className={cn("transition-transform duration-300 will-change-transform", className)}
     >
       {children}
     </div>

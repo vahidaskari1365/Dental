@@ -1,0 +1,111 @@
+{
+  "domain": "mehrdent.ir",
+  "audited_at": "2026-09-05",
+  "skill_pack": "claude-seo@a1480c7",
+  "summary": {
+    "health_score": 89,
+    "health_score_before": 60,
+    "business_type": "Local Service / Healthcare (Dentist, brick-and-mortar)",
+    "locale": "fa-IR",
+    "top_findings": [
+      "Render-blocking third-party fonts replaced with self-hosted variable font",
+      "Invisible breadcrumbs on all inner pages fixed (contrast AA)",
+      "Security headers added (HSTS, CSP, nosniff, Referrer-Policy, Permissions-Policy)",
+      "Local schema enriched: geo(5dp), aggregateRating, review, sameAs, hasMap, logo ImageObject",
+      "Theme redesigned to accessible mint-green design system"
+    ],
+    "quick_wins": [
+      "AI crawler policy in robots.txt",
+      "Sitemap image entries + stable lastmod",
+      "Service + Offer schema on service pages",
+      "AVIF/WebP + immutable cache headers for fonts"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 92,
+      "score_before": 62,
+      "what_works": [
+        "canonical on every page",
+        "crawl depth <= 2 for key pages",
+        "HTML payload well under Google's 2MB fetch limit"
+      ],
+      "findings": [
+        { "title": "Render-blocking Google Fonts requests", "severity": "Critical", "status": "fixed" },
+        { "title": "Missing security headers", "severity": "High", "status": "fixed" },
+        { "title": "Orphan/invalid CSS tokens from previous theme", "severity": "Medium", "status": "fixed" },
+        { "title": "No AI crawler policy in robots.txt", "severity": "Medium", "status": "fixed" }
+      ]
+    },
+    {
+      "name": "Schema & Structured Data",
+      "score": 90,
+      "score_before": 55,
+      "what_works": [
+        "Dentist + MedicalClinic + LocalBusiness subtype (healthcare best practice)",
+        "BreadcrumbList on every page",
+        "Physician ItemList on /team"
+      ],
+      "findings": [
+        { "title": "Missing geo / aggregateRating / review / sameAs / hasMap", "severity": "High", "status": "fixed" },
+        { "title": "Logo pointed at hero image", "severity": "Medium", "status": "fixed" },
+        { "title": "No WebSite/Organization graph nodes", "severity": "Medium", "status": "fixed" },
+        { "title": "FAQPage nested in clinic hasPart", "severity": "Info", "status": "fixed" }
+      ]
+    },
+    {
+      "name": "Local SEO",
+      "score": 88,
+      "score_before": 58,
+      "what_works": [
+        "NAP visible in footer and contact page",
+        "Embedded Google Map (lazy)",
+        "areaServed + openingHoursSpecification"
+      ],
+      "findings": [
+        { "title": "Friday emergency shift not in openingHoursSpecification", "severity": "Low", "status": "open" },
+        { "title": "Review velocity program (18-day rule) not documented", "severity": "Medium", "status": "open" },
+        { "title": "Physician sameAs to medical council IDs missing", "severity": "Low", "status": "open" }
+      ]
+    },
+    {
+      "name": "Content & E-E-A-T",
+      "score": 82,
+      "score_before": 70,
+      "what_works": [
+        "Author attribution by clinic physicians",
+        "Fact-dense hero stats band for AI citability",
+        "Practical, non-promotional tone"
+      ],
+      "findings": [
+        { "title": "Body passages not yet in 134-167 word citable chunks", "severity": "Medium", "status": "open" },
+        { "title": "Quarterly content refresh cadence not scheduled", "severity": "Medium", "status": "open" }
+      ]
+    },
+    {
+      "name": "Core Web Vitals / Performance",
+      "score": 85,
+      "score_before": 48,
+      "what_works": [
+        "priority + automatic preload for LCP hero image",
+        "variable font single request (108KB) with font-display: swap",
+        "reduced-motion support across all animations"
+      ],
+      "findings": [
+        { "title": "Static AVIF/WebP pre-generation for hero", "severity": "Low", "status": "open" }
+      ]
+    },
+    {
+      "name": "Sitemap & Crawlability",
+      "score": 95,
+      "score_before": 75,
+      "what_works": [
+        "all routes listed with priorities",
+        "image sitemap entries",
+        "robots.txt references sitemap and host"
+      ],
+      "findings": []
+    }
+  ]
+}

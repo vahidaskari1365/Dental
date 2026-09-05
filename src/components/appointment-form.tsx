@@ -47,13 +47,12 @@ export function AppointmentForm({ services, timeSlots, phone, defaultService }: 
     }, 700);
   }
 
-  const inputClass =
-    "w-full rounded-2xl border border-ink-50 bg-cream-50 px-4 py-3 text-ink-900 outline-none transition focus:border-brand-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(34,211,238,0.12)]";
+  const inputClass = "field";
 
   if (state === "done") {
     return (
-      <div className="surface-card p-8 text-center">
-        <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-100 text-brand-700">
+      <div className="surface-flat p-8 text-center">
+        <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-mint-100 text-brand-700">
           <CheckIcon className="h-8 w-8" />
         </span>
         <h3 className="mt-5 text-2xl font-extrabold text-brand-950">نوبت شما ثبت شد</h3>
@@ -72,18 +71,24 @@ export function AppointmentForm({ services, timeSlots, phone, defaultService }: 
   }
 
   return (
-    <form onSubmit={handleSubmit} className="surface-card p-6 md:p-8" noValidate>
+    <form onSubmit={handleSubmit} className="surface-flat p-6 md:p-8" noValidate>
       <div className="grid gap-5 md:grid-cols-2">
         <div>
-          <label htmlFor="fullName" className="mb-2 block text-sm font-bold text-brand-900">
+          <label htmlFor="fullName" className="field-label">
             نام و نام خانوادگی <span className="text-red-500">*</span>
           </label>
-          <input id="fullName" name="fullName" className={inputClass} placeholder="مثال: زهرا کریمی" autoComplete="name" />
-          {errors.fullName ? <p className="mt-2 text-xs font-bold text-red-500">{errors.fullName}</p> : null}
+          <input
+              id="fullName"
+              name="fullName"
+              className={`${inputClass} ${errors.fullName ? "field-error" : ""}`}
+              placeholder="مثال: زهرا کریمی"
+              autoComplete="name"
+            />
+          {errors.fullName ? <p className="field-hint">{errors.fullName}</p> : null}
         </div>
 
         <div>
-          <label htmlFor="phone" className="mb-2 block text-sm font-bold text-brand-900">
+          <label htmlFor="phone" className="field-label">
             شماره همراه <span className="text-red-500">*</span>
           </label>
           <input
@@ -91,15 +96,15 @@ export function AppointmentForm({ services, timeSlots, phone, defaultService }: 
             name="phone"
             inputMode="tel"
             dir="ltr"
-            className={inputClass}
+            className={`${inputClass} ${errors.phone ? "field-error" : ""}`}
             placeholder="09123456789"
             autoComplete="tel"
           />
-          {errors.phone ? <p className="mt-2 text-xs font-bold text-red-500">{errors.phone}</p> : null}
+          {errors.phone ? <p className="field-hint">{errors.phone}</p> : null}
         </div>
 
         <div>
-          <label htmlFor="serviceSlug" className="mb-2 block text-sm font-bold text-brand-900">
+          <label htmlFor="serviceSlug" className="field-label">
             نوع خدمت
           </label>
           <select id="serviceSlug" name="serviceSlug" defaultValue={defaultService ?? ""} className={inputClass}>
@@ -113,7 +118,7 @@ export function AppointmentForm({ services, timeSlots, phone, defaultService }: 
         </div>
 
         <div>
-          <label htmlFor="preferredTime" className="mb-2 block text-sm font-bold text-brand-900">
+          <label htmlFor="preferredTime" className="field-label">
             بازه ساعتی
           </label>
           <select id="preferredTime" name="preferredTime" className={inputClass}>
@@ -126,20 +131,20 @@ export function AppointmentForm({ services, timeSlots, phone, defaultService }: 
         </div>
 
         <div className="md:col-span-2">
-          <label htmlFor="preferredDate" className="mb-2 block text-sm font-bold text-brand-900">
+          <label htmlFor="preferredDate" className="field-label">
             تاریخ پیشنهادی <span className="text-red-500">*</span>
           </label>
           <input
             id="preferredDate"
             name="preferredDate"
             type="date"
-            className={`${inputClass} max-w-xs`}
+            className={`${inputClass} max-w-xs ${errors.preferredDate ? "field-error" : ""}`}
           />
-          {errors.preferredDate ? <p className="mt-2 text-xs font-bold text-red-500">{errors.preferredDate}</p> : null}
+          {errors.preferredDate ? <p className="field-hint">{errors.preferredDate}</p> : null}
         </div>
 
         <div className="md:col-span-2">
-          <label htmlFor="note" className="mb-2 block text-sm font-bold text-brand-900">
+          <label htmlFor="note" className="field-label">
             توضیح کوتاه (اختیاری)
           </label>
           <textarea

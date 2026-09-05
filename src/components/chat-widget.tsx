@@ -48,20 +48,21 @@ export function ChatWidget({ clinicName }: { clinicName: string }) {
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="fixed bottom-5 left-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-white shadow-lg shadow-brand-900/30 transition hover:bg-brand-700"
+        className="chat-launcher fixed bottom-5 left-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white shadow-[0_18px_36px_-16px_rgba(13,132,85,0.95)] transition hover:-translate-y-1 hover:brightness-110"
         aria-label={open ? "بستن گفتگوی آنلاین" : "گفتگوی آنلاین با پذیرش"}
       >
         {open ? <CloseIcon className="h-6 w-6" /> : <ChatIcon className="h-6 w-6" />}
       </button>
 
       {open ? (
-        <div className="fixed bottom-24 left-5 z-50 flex h-[28rem] w-[min(22rem,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-3xl border border-brand-100 bg-white shadow-2xl">
-          <div className="bg-brand-600 px-4 py-3 text-white">
-            <p className="text-sm font-extrabold">پشتیبانی آنلاین</p>
-            <p className="text-xs text-white/80">پاسخ فوری · بدون انتظار روی خط</p>
+        <div className="fixed bottom-24 left-5 z-50 flex h-[28rem] w-[min(22rem,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-3xl border border-mint-200 bg-white shadow-mint-lg">
+          <div className="relative overflow-hidden bg-gradient-to-l from-brand-700 to-night-900 px-4 py-3 text-white">
+            <span className="dots-pattern-light absolute inset-0 opacity-20" aria-hidden />
+            <p className="relative text-sm font-extrabold">پشتیبانی آنلاین</p>
+            <p className="relative text-xs text-mint-200/80">پاسخ فوری · بدون انتظار روی خط</p>
           </div>
 
-          <div ref={listRef} className="flex-1 space-y-3 overflow-y-auto bg-brand-50/40 p-4">
+          <div ref={listRef} className="flex-1 space-y-3 overflow-y-auto bg-mint-25 p-4">
             {messages.map((item, index) => (
               <div
                 key={index}
@@ -75,20 +76,20 @@ export function ChatWidget({ clinicName }: { clinicName: string }) {
               </div>
             ))}
             {loading ? (
-              <div className="me-auto rounded-2xl bg-white px-3 py-2 text-sm text-ink-500 shadow-sm">
+              <div className="me-auto rounded-2xl border border-mint-200 bg-white px-3.5 py-2.5 text-sm text-ink-500 shadow-mint-sm">
                 در حال نوشتن...
               </div>
             ) : null}
           </div>
 
-          <div className="border-t border-brand-100 p-3">
+          <div className="border-t border-mint-200 bg-white p-3">
             <div className="mb-2 flex flex-wrap gap-2">
               {SUGGESTIONS.map((item) => (
                 <button
                   key={item}
                   type="button"
                   onClick={() => send(item)}
-                  className="rounded-full border border-brand-100 px-3 py-1 text-xs font-bold text-brand-700 transition hover:bg-brand-50"
+                  className="rounded-full border border-mint-200 bg-mint-25 px-3 py-1 text-xs font-bold text-brand-700 transition hover:border-brand-300 hover:bg-mint-50"
                 >
                   {item}
                 </button>
@@ -105,9 +106,9 @@ export function ChatWidget({ clinicName }: { clinicName: string }) {
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 placeholder="سؤال خود را بنویسید..."
-                className="flex-1 rounded-full border border-brand-100 bg-brand-50/40 px-4 py-2 text-sm outline-none focus:border-brand-400 focus:bg-white"
+                className="field !rounded-full !py-2 text-sm"
               />
-              <button type="submit" className="btn-primary !px-4 !py-2 text-sm">
+              <button type="submit" className="btn-primary !px-5 !py-2 text-sm">
                 ارسال
               </button>
             </form>

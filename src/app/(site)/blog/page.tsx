@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/icons";
-import { EmptyState, JsonLd, PageHero, Section } from "@/components/ui";
+import {EmptyState, JsonLd, PageHero, Section, Breadcrumb } from "@/components/ui";
 import { getPosts } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { formatFaDate, toFaDigits } from "@/lib/utils";
@@ -53,15 +53,7 @@ export default async function BlogPage({
         eyebrow={`${toFaDigits(posts.length)} مقاله تخصصی`}
         title="بلاگ سلامت دهان و دندان"
         description="مقالات کوتاه و کاربردی، نوشته‌شده توسط پزشکان کلینیک؛ بدون اغراق تبلیغاتی."
-        breadcrumb={
-          <nav className="text-sm text-brand-200" aria-label="مسیر صفحه">
-            <Link href="/" className="transition hover:text-white">
-              خانه
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">بلاگ</span>
-          </nav>
-        }
+        breadcrumb={<Breadcrumb current="بلاگ" />}
       />
 
       <Section>

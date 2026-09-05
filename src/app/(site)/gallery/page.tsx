@@ -57,7 +57,7 @@ export default async function GalleryPage({
         }
       />
 
-      <Section>
+      <Section tone="gradient">
         <div className="mb-10 flex flex-wrap justify-center gap-3">
           <Link
             href="/gallery"
@@ -91,7 +91,7 @@ export default async function GalleryPage({
         </div>
       </Section>
 
-      <Section tone="soft">
+      <Section tone="sand">
         <SectionHeading
           eyebrow="نتیجه خودتان را ببینید"
           title="پیش‌نمایش دیجیتال لبخند، قبل از شروع درمان"

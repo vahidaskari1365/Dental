@@ -106,157 +106,177 @@ export default async function HomePage() {
       <JsonLd data={breadcrumbJsonLd([{ name: "خانه", path: "/" }])} />
 
       {/* ================================= HERO ================================= */}
-      <section className="relative overflow-hidden bg-cream-50">
-        <span className="wash -start-24 -top-24 h-96 w-96 bg-brand-100/80" aria-hidden />
-        <span
-          className="wash -end-24 top-16 h-96 w-96 bg-sand-200/60"
-          style={{ animationDelay: "6s" }}
-          aria-hidden
-        />
-        <span className="dots-pattern absolute inset-x-0 bottom-0 h-48 opacity-50" aria-hidden />
+      <section className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-cream-50 to-cream-100 pt-10 pb-20 md:pt-14 md:pb-28">
+        {/* پس‌زمینه دراماتیک */}
+        <div className="absolute inset-0 -z-10" aria-hidden>
+          <span className="aurora start-[10%] top-[-10%] h-[28rem] w-[28rem] bg-brand-300/45" />
+          <span
+            className="aurora end-[5%] top-[20%] h-[26rem] w-[26rem] bg-sand-300/55"
+            style={{ animationDelay: "6s" }}
+          />
+          <span
+            className="aurora start-[40%] bottom-[-15%] h-[24rem] w-[24rem] bg-brand-200/50"
+            style={{ animationDelay: "12s" }}
+          />
+          <span className="grid-lines absolute inset-0 opacity-50" />
+          <span className="dots-pattern absolute inset-x-0 bottom-0 h-56 opacity-40" />
+        </div>
 
-        <div className="page-shell relative grid items-center gap-12 py-14 md:py-20 lg:grid-cols-[1.04fr_0.96fr]">
-          {/* ستون متن */}
-          <div className="animate-float-up">
-            <span className="chip-light">
-              <span className="anim-dot h-2 w-2 rounded-full bg-brand-500" />
-              امروز پذیرش داریم · ۹:۰۰ تا ۲۰:۰۰
-            </span>
-
-            <h1 className="display-hero mt-6 text-ink-900">
-              لبخند سالم،
-              <span className="mt-1 block">
-                از <span className="underline-squiggle text-brand-700">همین هفته</span> شروع می‌شود
+        <div className="page-shell relative">
+          {/* ستون مرکزی */}
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="animate-float-up">
+              <span className="chip-light">
+                <span className="anim-dot h-2 w-2 rounded-full bg-brand-500" />
+                امروز پذیرش داریم · ۹:۰۰ تا ۲۰:۰۰
               </span>
-            </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-9 text-ink-700 md:text-lg">
-              کلینیک {settings.clinicShortName} در سعادت‌آباد تهران — ۹ یونیت مجزا، تشخیص کاملاً دیجیتال و
-              تیم متخصص ایمپلنت، ارتودنسی و زیبایی. معاینه اولیه و مشاوره درمان رایگان است.
-            </p>
+              <h1 className="display-hero mt-7 text-balance text-ink-900 md:mt-8">
+                لبخند سالم،
+                <span className="mt-1 block">
+                  از <span className="underline-squiggle text-brand-700">همین هفته</span> شروع می‌شود
+                </span>
+              </h1>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/appointment" className="btn-primary shine !px-8 !py-4 text-base">
-                <CalendarIcon className="h-5 w-5" />
-                رزرو نوبت آنلاین
-              </Link>
-              <a href={`tel:${settings.phone}`} className="btn-ghost !px-7 !py-4 text-base">
-                <PhoneIcon className="h-5 w-5 text-brand-600" />
-                <span dir="ltr">{settings.phone}</span>
-              </a>
-            </div>
+              <p className="mx-auto mt-7 max-w-2xl text-base leading-9 text-ink-700 md:text-lg">
+                کلینیک {settings.clinicShortName} در سعادت‌آباد تهران — ۹ یونیت مجزا، تشخیص کاملاً دیجیتال و
+                تیم متخصص ایمپلنت، ارتودنسی و زیبایی. معاینه اولیه و مشاوره درمان رایگان است.
+              </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-5">
-              <div className="flex items-center">
-                {["ز", "م", "ن", "س"].map((letter, index) => (
-                  <span
-                    key={letter}
-                    className="anim-float -ms-3 flex h-10 w-10 items-center justify-center rounded-full border-2 border-cream-50 bg-white text-sm font-black text-brand-700 shadow-sm first:ms-0"
-                    style={{ animationDelay: `${index * 0.5}s` }}
-                  >
-                    {letter}
-                  </span>
-                ))}
+              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Link href="/appointment" className="btn-primary shine !px-9 !py-4 text-base shadow-[0_22px_44px_-18px_rgba(19,93,92,0.9)]">
+                  <CalendarIcon className="h-5 w-5" />
+                  رزرو نوبت آنلاین
+                </Link>
+                <a href={`tel:${settings.phone}`} className="btn-ghost !px-7 !py-4 text-base">
+                  <PhoneIcon className="h-5 w-5 text-brand-600" />
+                  <span dir="ltr">{settings.phone}</span>
+                </a>
               </div>
-              <div>
-                <Stars rating={Math.round(averageRating)} />
-                <p className="mt-0.5 text-xs text-ink-500">
-                  امتیاز {toFaDigits(averageRating.toFixed(1))} از ۵ · بیش از{" "}
-                  <CountUp value={2400} suffix="+" /> بیمار
-                </p>
-              </div>
-            </div>
 
-            <dl className="mt-8 grid max-w-lg grid-cols-3 gap-3">
-              {[
-                { value: 18, suffix: "", label: "سال تجربه" },
-                { value: 4000, suffix: "+", label: "ایمپلنت" },
-                { value: 95, suffix: "٪", label: "موفقیت درمان" },
-              ].map((item) => (
-                <div key={item.label} className="card-soft p-4 text-center">
-                  <dt className="text-2xl font-black text-brand-700 md:text-3xl">
-                    <CountUp value={item.value} suffix={item.suffix} />
-                  </dt>
-                  <dd className="mt-1 text-[11px] font-bold text-ink-500">{item.label}</dd>
+              {/* نشانگر اعتماد */}
+              <div className="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center">
+                    {["ز", "م", "ن", "س"].map((letter, index) => (
+                      <span
+                        key={letter}
+                        className="anim-float -ms-3 flex h-11 w-11 items-center justify-center rounded-full border-2 border-cream-50 bg-white text-sm font-black text-brand-700 shadow-md first:ms-0"
+                        style={{ animationDelay: `${index * 0.5}s` }}
+                      >
+                        {letter}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="text-start">
+                    <Stars rating={Math.round(averageRating)} />
+                    <p className="mt-0.5 text-[11px] font-bold text-ink-500">
+                      امتیاز {toFaDigits(averageRating.toFixed(1))} از ۵ · بیش از{" "}
+                      <CountUp value={2400} suffix="+" /> بیمار
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </dl>
+
+                <div className="hidden h-10 w-px bg-cream-300 sm:block" aria-hidden />
+
+                <div className="flex items-center gap-2 rounded-full border border-cream-200 bg-white/80 px-4 py-2 text-[11px] font-black text-ink-900 shadow-sm backdrop-blur">
+                  <ShieldIcon className="h-4 w-4 text-brand-600" />
+                  اتوکلاو کلاس B · استریل ۱۰۰٪
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* کلاژ تصویر ارگانیک */}
-          <div className="animate-float-up delay-2 relative mx-auto w-full max-w-lg pb-10 pt-6">
-            {/* دایره نقطه‌ای تزئینی */}
-            <span className="dots-pattern absolute -top-2 -end-2 h-40 w-40 rounded-full opacity-70" aria-hidden />
-            <span className="anim-pulse-ring absolute start-1/2 top-1/2 h-72 w-72 rounded-full border border-brand-200" aria-hidden />
-
-            <div className="relative aspect-4/5 w-[86%]">
-              <Image
-                src="/images/hero-clinic.jpg"
-                alt="اتاق درمان کلینیک دندانپزشکی مهرادنت با تجهیزات دیجیتال"
-                fill
-                priority
-                sizes="(max-width: 1024px) 90vw, 480px"
-                className="blob-img object-cover"
-              />
+          {/* کلاژ تصویر زیر هیرو */}
+          <div className="relative mx-auto mt-16 grid max-w-5xl items-end gap-4 md:mt-20 md:grid-cols-[1.4fr_1fr]">
+            {/* تصویر اصلی */}
+            <div className="animate-float-up delay-1 relative">
+              <span className="dots-pattern absolute -top-4 -end-4 h-32 w-32 rounded-full opacity-70" aria-hidden />
+              <span className="anim-pulse-ring absolute start-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full border border-brand-200" aria-hidden />
+              <div className="relative aspect-[5/4] w-full overflow-hidden rounded-[2rem] border border-cream-200 shadow-[0_30px_60px_-30px_rgba(16,63,64,0.55)]">
+                <Image
+                  src="/images/hero-clinic.jpg"
+                  alt="اتاق درمان کلینیک دندانپزشکی مهرادنت با تجهیزات دیجیتال"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                  className="object-cover"
+                />
+                <div className="absolute bottom-4 start-4 rounded-2xl border border-white/40 bg-white/90 p-3 text-xs shadow-lg backdrop-blur">
+                  <p className="font-black text-ink-900">تشخیص دیجیتال، درمان دقیق‌تر</p>
+                  <p className="text-ink-500">رادیوگرافی OPC و اسکنر اینترااورال</p>
+                </div>
+              </div>
             </div>
 
-            {/* کارت تصویر دوم */}
-            <div className="absolute -bottom-2 -start-2 w-40 overflow-hidden rounded-[1.5rem] border-4 border-white shadow-[0_24px_48px_-30px_rgba(16,63,64,0.6)] sm:w-48">
-              <div className="relative aspect-square">
+            {/* ستون کنار: تصویر کوچک‌تر + کارت‌های شناور */}
+            <div className="animate-float-up delay-2 relative flex flex-col gap-4">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.6rem] border border-cream-200 shadow-[0_24px_48px_-30px_rgba(16,63,64,0.5)]">
                 <Image
                   src="/images/clinic-room.jpg"
-                  alt="تجهیزات استریل و اتاق درمان مجزا"
+                  alt="اتاق درمان مجزا با تجهیزات استریل"
                   fill
-                  sizes="200px"
+                  sizes="(max-width: 768px) 100vw, 40vw"
                   className="object-cover"
                 />
               </div>
-            </div>
 
-            {/* کارت امتیاز */}
-            <div className="anim-float-card absolute -top-4 -start-4 rounded-2xl border border-cream-200 bg-white/95 p-4 shadow-[0_20px_40px_-28px_rgba(16,63,64,0.6)] backdrop-blur">
-              <div className="flex items-center gap-2">
-                <Stars rating={Math.round(averageRating)} />
-                <span className="text-lg font-black text-ink-900">
-                  {toFaDigits(averageRating.toFixed(1))}
-                </span>
+              {/* کارت نوبت آزاد */}
+              <div className="anim-float-card relative overflow-hidden rounded-[1.6rem] bg-brand-800 p-5 text-white shadow-[0_24px_44px_-22px_rgba(19,93,92,0.85)]">
+                <div className="absolute -end-12 -top-12 h-32 w-32 rounded-full bg-brand-500/40 blur-2xl" aria-hidden />
+                <p className="flex items-center gap-2 text-[11px] font-bold text-white/70">
+                  <span className="anim-dot h-2 w-2 rounded-full bg-sand-400" />
+                  نوبت‌های آزاد امروز
+                </p>
+                <p className="mt-2 text-3xl font-black">{toFaDigits(3)} بازه خالی</p>
+                <p className="mt-0.5 text-[11px] text-white/60">{TIME_SLOTS[3]}</p>
+                <Link
+                  href="/appointment"
+                  className="mt-4 flex items-center justify-between rounded-xl bg-white/15 px-3 py-2.5 text-[12px] font-black transition hover:bg-white/25"
+                >
+                  همین حالا رزرو کن
+                  <ArrowIcon className="h-4 w-4" />
+                </Link>
               </div>
-              <p className="mt-1 text-[11px] leading-5 text-ink-500">
-                میانگین {toFaDigits(480)} نظر ثبت‌شده در گوگل
-              </p>
-            </div>
 
-            {/* کارت نوبت‌های آزاد */}
-            <div
-              className="anim-float-card absolute -bottom-4 -end-2 w-44 rounded-2xl bg-brand-700 p-4 text-white shadow-[0_24px_44px_-26px_rgba(19,93,92,0.9)]"
-              style={{ animationDelay: "1.6s" }}
-            >
-              <p className="flex items-center gap-2 text-[11px] font-bold text-white/70">
-                <span className="anim-dot h-2 w-2 rounded-full bg-sand-400" />
-                نوبت‌های آزاد امروز
-              </p>
-              <p className="mt-2 text-2xl font-black">{toFaDigits(3)} بازه خالی</p>
-              <p className="mt-0.5 text-[11px] text-white/60">{TIME_SLOTS[3]}</p>
-              <Link
-                href="/appointment"
-                className="mt-3 flex items-center justify-between rounded-xl bg-white/15 px-3 py-2 text-[11px] font-black transition hover:bg-white/25"
-              >
-                همین حالا رزرو کن
-                <ArrowIcon className="h-4 w-4" />
-              </Link>
-            </div>
-
-            {/* نشان استریل */}
-            <div className="absolute -top-6 end-6 flex items-center gap-2 rounded-full border border-cream-200 bg-white px-3 py-2 text-[11px] font-black text-ink-900 shadow-sm">
-              <ShieldIcon className="h-4 w-4 text-brand-600" />
-              اتوکلاو کلاس B
+              {/* کارت امتیاز */}
+              <div className="anim-float-card rounded-[1.6rem] border border-cream-200 bg-white/95 p-4 shadow-[0_20px_40px_-28px_rgba(16,63,64,0.55)] backdrop-blur" style={{ animationDelay: "1.4s" }}>
+                <div className="flex items-center gap-2">
+                  <Stars rating={Math.round(averageRating)} />
+                  <span className="text-lg font-black text-ink-900">
+                    {toFaDigits(averageRating.toFixed(1))}
+                  </span>
+                </div>
+                <p className="mt-1 text-[11px] leading-5 text-ink-500">
+                  میانگین {toFaDigits(480)} نظر ثبت‌شده در گوگل
+                </p>
+              </div>
             </div>
           </div>
+
+          {/* آمار سریع */}
+          <dl className="mx-auto mt-14 grid max-w-3xl grid-cols-3 gap-3 md:mt-16 md:gap-5">
+            {[
+              { value: 18, suffix: "", label: "سال تجربه" },
+              { value: 4000, suffix: "+", label: "ایمپلنت کاشته‌شده" },
+              { value: 95, suffix: "٪", label: "موفقیت درمان" },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-2xl border border-cream-200 bg-white/70 p-5 text-center shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-md"
+              >
+                <dt className="text-2xl font-black text-brand-700 md:text-4xl">
+                  <CountUp value={item.value} suffix={item.suffix} />
+                </dt>
+                <dd className="mt-1 text-[11px] font-bold text-ink-500 md:text-xs">{item.label}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
         {/* نوار متحرک خدمات */}
-        <div className="relative border-y border-cream-200 bg-white py-4">
-          <div dir="ltr" className="mask-fade-x overflow-hidden">
+        <div className="relative mt-16 border-y border-cream-200/80 bg-white/70 backdrop-blur-md md:mt-20">
+          <div dir="ltr" className="mask-fade-x overflow-hidden py-4">
             <div className="marquee-track gap-10">
               {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, index) => (
                 <span key={`${item}-${index}`} className="flex shrink-0 items-center gap-3 text-sm font-bold text-ink-500">
@@ -270,7 +290,7 @@ export default async function HomePage() {
       </section>
 
       {/* ============================= TRUST STRIP ============================= */}
-      <div className="bg-white py-8">
+      <div className="relative bg-gradient-to-b from-cream-100 via-cream-50 to-cream-100 py-10">
         <div className="page-shell grid gap-6 text-sm font-bold text-ink-700 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { icon: <SpeedIcon className="h-5 w-5" />, title: "درمان یک‌جلسه‌ای", text: "درمان ریشه و بلیچینگ در یک جلسه" },
@@ -279,8 +299,8 @@ export default async function HomePage() {
             { icon: <CheckIcon className="h-5 w-5" />, title: "گارانتی درمان", text: "گارانتی مادام‌العمر فیکسچر" },
           ].map((item, index) => (
             <Reveal key={item.title} delay={index * 90}>
-              <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+              <div className="flex items-center gap-3 rounded-2xl border border-cream-200 bg-white/70 p-3 backdrop-blur transition hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">
                   {item.icon}
                 </span>
                 <span>
@@ -294,7 +314,7 @@ export default async function HomePage() {
       </div>
 
       {/* =============================== SERVICES =============================== */}
-      <Section id="services" tone="soft">
+      <Section id="services" tone="mint">
         <SectionHeading
           eyebrow="خدمات تخصصی"
           title="همه خدمات دندانپزشکی زیر یک سقف"
@@ -323,10 +343,10 @@ export default async function HomePage() {
       </Section>
 
       {/* ================================ WHY US ================================ */}
-      <Section tone="light">
+      <Section tone="gradient">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <div className="relative aspect-4/3 overflow-hidden rounded-[2rem] border border-cream-200">
+            <div className="relative aspect-4/3 overflow-hidden rounded-[2rem] border border-cream-200 shadow-[0_30px_60px_-30px_rgba(16,63,64,0.45)]">
               <Image
                 src="/images/clinic-room.jpg"
                 alt="اتاق درمان دندانپزشکی با تجهیزات دیجیتال"
@@ -376,7 +396,7 @@ export default async function HomePage() {
       </Section>
 
       {/* ============================= BEFORE / AFTER ============================= */}
-      <Section tone="night">
+      <Section tone="brand">
         <SectionHeading
           invert
           eyebrow="گالری قبل و بعد"
@@ -399,7 +419,7 @@ export default async function HomePage() {
       </Section>
 
       {/* ================================= TEAM ================================= */}
-      <Section tone="light">
+      <Section tone="warm">
         <SectionHeading
           eyebrow="تیم پزشکی"
           title="متخصص‌های بورد‌دار، همیشه در دسترس"
@@ -439,7 +459,7 @@ export default async function HomePage() {
       </Section>
 
       {/* ============================== TESTIMONIALS ============================== */}
-      <Section tone="soft">
+      <Section tone="sand">
         <SectionHeading
           eyebrow="نظر بیماران"
           title="اعتماد شما، بهترین معرف ماست"
@@ -467,7 +487,7 @@ export default async function HomePage() {
       </Section>
 
       {/* ================================= BLOG ================================= */}
-      <Section tone="light">
+      <Section tone="aurora">
         <SectionHeading
           eyebrow="بلاگ سلامت دهان"
           title="دانستنی‌هایی که هزینه درمان را کم می‌کند"
@@ -505,7 +525,7 @@ export default async function HomePage() {
       </Section>
 
       {/* ================================== FAQ ================================== */}
-      <Section tone="soft">
+      <Section tone="mint">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <SectionHeading
             align="start"
@@ -518,14 +538,14 @@ export default async function HomePage() {
       </Section>
 
       {/* ================================ MAP + CTA ================================ */}
-      <Section tone="night">
+      <Section tone="gradient">
         <div className="grid items-stretch gap-6 lg:grid-cols-2">
           <Reveal>
-            <div className="ring-gradient h-full overflow-hidden rounded-[1.6rem] border border-white/15">
+            <div className="ring-gradient h-full overflow-hidden rounded-[1.6rem] border border-white/15 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)]">
               <iframe
                 src={settings.mapEmbedUrl}
                 title={`نقشه موقعیت ${settings.clinicName}`}
-                className="h-full min-h-80 w-full border-0"
+                className="h-full min-h-96 w-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen

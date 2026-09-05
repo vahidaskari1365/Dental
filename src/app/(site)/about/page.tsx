@@ -48,9 +48,9 @@ export default async function AboutPage() {
         }
       />
 
-      <Section>
+      <Section tone="aurora">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="relative aspect-4/3 overflow-hidden rounded-[2rem]">
+          <div className="relative aspect-4/3 overflow-hidden rounded-[2rem] border border-cream-200 shadow-[0_30px_60px_-30px_rgba(16,63,64,0.45)]">
             <Image
               src="/images/hero-clinic.jpg"
               alt="فضای پذیرش کلینیک دندانپزشکی مهرادنت"
@@ -81,7 +81,7 @@ export default async function AboutPage() {
         </div>
       </Section>
 
-      <Section tone="soft">
+      <Section tone="warm">
         <SectionHeading eyebrow="مسیر رشد" title="از یک مطب کوچک تا کلینیک تخصصی" />
         <ol className="grid gap-6 md:grid-cols-4">
           {TIMELINE.map((item) => (
@@ -94,7 +94,7 @@ export default async function AboutPage() {
         </ol>
       </Section>
 
-      <Section>
+      <Section tone="gradient">
         <SectionHeading
           eyebrow="ارزش‌های ما"
           title="چهار اصلی که تغییر نمی‌کند"
@@ -118,7 +118,7 @@ export default async function AboutPage() {
         </div>
       </Section>
 
-      <Section tone="soft">
+      <Section tone="sand">
         <div className="surface-card grid items-center gap-8 p-8 md:grid-cols-[1.3fr_0.7fr] md:p-12">
           <div>
             <h2 className="text-2xl font-extrabold text-brand-950 md:text-3xl">

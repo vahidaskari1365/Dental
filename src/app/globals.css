@@ -27,6 +27,7 @@
   --color-cream-50: #fdfcfa;
   --color-cream-100: #f7f4ee;
   --color-cream-200: #eee9df;
+  --color-cream-300: #e4ddd0;
 
   /* متن: خاکستری با ته‌رنگ سبز */
   --color-ink-50: #f4f4f1;
@@ -50,7 +51,11 @@
 
   body {
     font-family: var(--font-sans);
-    background-color: var(--color-cream-50);
+    background:
+      radial-gradient(ellipse 90% 60% at 50% -10%, rgba(45, 138, 130, 0.08), transparent 60%),
+      radial-gradient(ellipse 80% 50% at 100% 30%, rgba(232, 176, 75, 0.05), transparent 60%),
+      var(--color-cream-50);
+    background-attachment: fixed;
     color: var(--color-ink-900);
     line-height: 1.85;
     -webkit-font-smoothing: antialiased;

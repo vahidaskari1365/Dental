@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { AppointmentForm } from "@/components/appointment-form";
 import { CheckIcon, ClockIcon, PhoneIcon, ShieldIcon } from "@/components/icons";
-import { Accordion, JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
+import {Accordion, JsonLd, PageHero, Section, SectionHeading, Breadcrumb } from "@/components/ui";
 import { getServices, getSettings } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { TIME_SLOTS } from "@/lib/site";
@@ -42,15 +41,7 @@ export default async function AppointmentPage({
         eyebrow="تأیید در کمتر از ۲ ساعت کاری"
         title="رزرو نوبت آنلاین"
         description={`فرم نوبت‌دهی با حداقل فیلد طراحی شده است. برای اورژانس همین حالا با ${settings.phone2} تماس بگیرید.`}
-        breadcrumb={
-          <nav className="text-sm text-brand-200" aria-label="مسیر صفحه">
-            <Link href="/" className="transition hover:text-white">
-              خانه
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">رزرو نوبت</span>
-          </nav>
-        }
+        breadcrumb={<Breadcrumb current="رزرو نوبت" />}
       />
 
       <Section>

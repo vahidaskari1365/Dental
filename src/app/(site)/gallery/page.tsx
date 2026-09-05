@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BeforeAfterCard } from "@/components/before-after";
 import { CalendarIcon } from "@/components/icons";
-import { JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
+import {JsonLd, PageHero, Section, SectionHeading, Breadcrumb } from "@/components/ui";
 import { getGalleryCases } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { toFaDigits } from "@/lib/utils";
@@ -46,15 +46,7 @@ export default async function GalleryPage({
         eyebrow={`${toFaDigits(cases.length)} مورد منتشرشده`}
         title="گالری قبل و بعد درمان"
         description="دستگیره میانی تصاویر را بکشید و تفاوت را ببینید. تمام تصاویر با رضایت بیماران و بدون روتوش منتشر شده است."
-        breadcrumb={
-          <nav className="text-sm text-brand-200" aria-label="مسیر صفحه">
-            <Link href="/" className="transition hover:text-white">
-              خانه
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">قبل و بعد</span>
-          </nav>
-        }
+        breadcrumb={<Breadcrumb current="قبل و بعد" />}
       />
 
       <Section tone="gradient">

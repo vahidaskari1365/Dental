@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CheckIcon, ShieldIcon, SpeedIcon, ToothIcon } from "@/components/icons";
-import { JsonLd, PageHero, Section, SectionHeading, Stat } from "@/components/ui";
+import {JsonLd, PageHero, Section, SectionHeading, Stat, Breadcrumb } from "@/components/ui";
 import { getSettings } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { toFaDigits } from "@/lib/utils";
@@ -37,20 +37,12 @@ export default async function AboutPage() {
         eyebrow="از ۱۳۸۷ تا امروز"
         title={`درباره ${settings.clinicName}`}
         description="ما باور داریم دندانپزشکی خوب، دندانپزشکی قابل پیش‌بینی است: تشخیص شفاف، درمان بدون درد و هزینه‌ای که از قبل می‌دانید."
-        breadcrumb={
-          <nav className="text-sm text-brand-200" aria-label="مسیر صفحه">
-            <Link href="/" className="transition hover:text-white">
-              خانه
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">درباره کلینیک</span>
-          </nav>
-        }
+        breadcrumb={<Breadcrumb current="درباره کلینیک" />}
       />
 
       <Section tone="aurora">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="relative aspect-4/3 overflow-hidden rounded-[2rem] border border-cream-200 shadow-[0_30px_60px_-30px_rgba(16,63,64,0.45)]">
+          <div className="relative aspect-4/3 overflow-hidden rounded-[2rem] border border-mint-200 shadow-[0_30px_60px_-30px_rgba(16,63,64,0.45)]">
             <Image
               src="/images/hero-clinic.jpg"
               alt="فضای پذیرش کلینیک دندانپزشکی مهرادنت"

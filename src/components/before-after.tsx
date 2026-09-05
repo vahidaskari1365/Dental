@@ -76,22 +76,22 @@ export function BeforeAfterCard({
 
         <span
           dir="rtl"
-          className="pointer-events-none absolute bottom-3 left-3 rounded-full border border-white/15 bg-night-950/80 px-3 py-1 text-xs font-bold text-white backdrop-blur"
+          className="pointer-events-none absolute bottom-3 left-3 rounded-full border border-white/20 bg-night-950/85 px-3 py-1 text-xs font-bold text-white backdrop-blur"
         >
           بعد از درمان
         </span>
         <span
           dir="rtl"
-          className="pointer-events-none absolute bottom-3 right-3 rounded-full border border-white/50 bg-white/90 px-3 py-1 text-xs font-bold text-ink-900"
+          className="pointer-events-none absolute bottom-3 right-3 rounded-full border border-mint-200 bg-white/92 px-3 py-1 text-xs font-bold text-brand-800 backdrop-blur"
         >
           قبل از درمان
         </span>
 
         <div
-          className="pointer-events-none absolute inset-y-0 w-0.5 bg-white shadow-[0_0_12px_rgba(0,0,0,0.35)]"
+          className="pointer-events-none absolute inset-y-0 w-0.5 bg-white shadow-[0_0_14px_rgba(9,68,48,0.5)]"
           style={{ left: `${position}%` }}
         >
-          <span className="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-brand-600/90 text-white">
+          <span className="absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-gradient-to-br from-brand-500 to-brand-800 text-white shadow-mint-md">
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 7 5 12l4 5M15 7l4 5-4 5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -115,9 +115,9 @@ export function BeforeAfterCard({
 
       <div className="p-6">
         <div className="flex flex-wrap items-center gap-2 text-xs font-bold">
-          <span className="rounded-full bg-brand-50 px-3 py-1 text-brand-800">{category}</span>
+          <span className="rounded-full bg-mint-100 px-3 py-1 text-brand-800">{category}</span>
           {durationText ? (
-            <span className="rounded-full bg-sand-50 px-3 py-1 text-sand-600">مدت درمان: {durationText}</span>
+            <span className="rounded-full bg-sand-100 px-3 py-1 text-sand-600">مدت درمان: {durationText}</span>
           ) : null}
         </div>
         <h3 className="display-2 mt-3 text-ink-900">{title}</h3>

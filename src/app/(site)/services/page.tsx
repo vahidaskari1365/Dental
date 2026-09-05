@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon, CalendarIcon, CheckIcon, ServiceIcon } from "@/components/icons";
-import { JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
+import {JsonLd, PageHero, Section, SectionHeading, Breadcrumb } from "@/components/ui";
 import { getServices, getSettings } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { toFaDigits } from "@/lib/utils";
@@ -43,15 +43,7 @@ export default async function ServicesPage() {
         eyebrow={`${toFaDigits(services.length)} خدمت تخصصی`}
         title="خدمات کلینیک دندانپزشکی مهرادنت"
         description="هر خدمت با توضیح کامل مراحل درمان، مدت زمان و هزینه تقریبی. برای برآورد دقیق، معاینه اولیه رایگان است."
-        breadcrumb={
-          <nav className="text-sm text-brand-200" aria-label="مسیر صفحه">
-            <Link href="/" className="transition hover:text-white">
-              خانه
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">خدمات</span>
-          </nav>
-        }
+        breadcrumb={<Breadcrumb current="خدمات" />}
       />
 
       <Section tone="gradient">

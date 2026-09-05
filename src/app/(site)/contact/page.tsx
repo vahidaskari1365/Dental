@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CalendarIcon, ClockIcon, InstagramIcon, LocationIcon, PhoneIcon, TelegramIcon, WhatsappIcon } from "@/components/icons";
-import { JsonLd, PageHero, Section, SectionHeading } from "@/components/ui";
+import {JsonLd, PageHero, Section, SectionHeading, Breadcrumb } from "@/components/ui";
 import { getSettings } from "@/lib/data";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
@@ -28,15 +28,7 @@ export default async function ContactPage() {
         eyebrow="سعادت‌آباد، بلوار دریا"
         title="تماس با کلینیک مهرادنت"
         description="برای مشاوره، هماهنگی نوبت یا اورژانس با ما در ارتباط باشید. پاسخگویی تلفنی در تمام ساعات کاری."
-        breadcrumb={
-          <nav className="text-sm text-brand-200" aria-label="مسیر صفحه">
-            <Link href="/" className="transition hover:text-white">
-              خانه
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">تماس با ما</span>
-          </nav>
-        }
+        breadcrumb={<Breadcrumb current="تماس با ما" />}
       />
 
       <Section tone="aurora">

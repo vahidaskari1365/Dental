@@ -56,7 +56,7 @@ export default async function GalleryPage({
             className={`rounded-full border px-5 py-2 text-sm font-bold transition ${
               activeCategory === ""
                 ? "border-brand-600 bg-brand-600 text-white"
-                : "border-brand-100 bg-white text-ink-700 hover:border-brand-300"
+                : "border-brand-200 bg-mint-50 text-ink-700 hover:border-brand-300"
             }`}
           >
             همه موارد
@@ -68,7 +68,7 @@ export default async function GalleryPage({
               className={`rounded-full border px-5 py-2 text-sm font-bold transition ${
                 activeCategory === category
                   ? "border-brand-600 bg-brand-600 text-white"
-                  : "border-brand-100 bg-white text-ink-700 hover:border-brand-300"
+                  : "border-brand-200 bg-mint-50 text-ink-700 hover:border-brand-300"
               }`}
             >
               {category}

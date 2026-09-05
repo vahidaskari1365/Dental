@@ -93,7 +93,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
-      <body className="bg-mint-50 text-ink-900 antialiased">{children}</body>
+      <body className="bg-mint-200 text-ink-900 antialiased">{children}</body>
     </html>
   );
 }

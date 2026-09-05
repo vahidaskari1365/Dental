@@ -44,12 +44,12 @@ export function Section({
 }) {
   const tones: Record<SectionTone, string> = {
     light: "bg-transparent",
-    soft: "bg-white/72 backdrop-blur-sm",
-    mint: "bg-mint-100/70",
-    gradient: "bg-gradient-to-b from-white/85 via-mint-50/70 to-mint-100/60",
-    warm: "bg-gradient-to-br from-mint-50 via-white/80 to-mint-100/70",
-    sand: "bg-gradient-to-br from-sand-50/80 via-mint-50/70 to-mint-100/60",
-    aurora: "bg-gradient-to-br from-mint-100/90 via-mint-50/80 to-white/85",
+    soft: "bg-mint-100/75 backdrop-blur-sm",
+    mint: "bg-mint-200/65",
+    gradient: "bg-gradient-to-b from-mint-50/85 via-mint-100/80 to-mint-200/70",
+    warm: "bg-gradient-to-br from-mint-100/85 via-mint-50/80 to-mint-200/75",
+    sand: "bg-gradient-to-br from-sprout-100/55 via-mint-50/80 to-mint-200/70",
+    aurora: "bg-gradient-to-br from-mint-200/85 via-mint-100/85 to-mint-50/85",
     night: "bg-night-950 text-white",
     brand: "bg-gradient-to-b from-brand-900 via-night-900 to-night-950 text-white",
   };
@@ -74,7 +74,7 @@ export function Section({
                   ? "M0 0h1440v36c-240 24-480 24-720 4S240-16 0 8Z"
                   : "M0 0h1440v44c-240-24-480-24-720-4S240 60 0 36Z"
               }
-              fill={isDark ? "var(--color-mint-50)" : "var(--color-night-950)"}
+              fill={isDark ? "var(--color-mint-100)" : "var(--color-night-950)"}
             />
           </svg>
         </span>
@@ -226,7 +226,9 @@ export function PageHero({
 }) {
   return (
     <header className="relative overflow-hidden pt-12 pb-16 md:pt-16 md:pb-20">
-      {/* بوم سبز با لایه‌های نور */}
+      {/* بوم سبز با عکس کم‌رنگ مرتبط با کلینیک + لایه‌های نور */}
+      <span className="hero-photo hero-photo-soft" aria-hidden />
+      <span className="hero-photo-tint" aria-hidden />
       <span className="leaf-pattern pointer-events-none absolute inset-0" aria-hidden />
       <span className="wash -start-28 -top-24 h-96 w-96 bg-mint-200/80" aria-hidden />
       <span
@@ -301,7 +303,7 @@ export function Stat({
     <div
       className={cn(
         "rounded-2xl p-5 text-center transition duration-500 hover:-translate-y-1.5",
-        invert ? "card-dark" : "border border-mint-200 bg-white/90 shadow-mint-sm",
+        invert ? "card-dark" : "border border-mint-200 bg-mint-50/92 shadow-mint-sm",
       )}
     >
       <div
@@ -337,7 +339,7 @@ export function Marquee({ items }: { items: string[] }) {
         {doubled.map((item, index) => (
           <span
             key={`${item}-${index}`}
-            className="flex shrink-0 items-center gap-2 rounded-full border border-mint-200 bg-white/80 px-4 py-1.5 text-xs font-bold text-brand-800"
+            className="flex shrink-0 items-center gap-2 rounded-full border border-mint-200 bg-mint-50/85 px-4 py-1.5 text-xs font-bold text-brand-800"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
             {item}

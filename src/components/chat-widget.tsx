@@ -55,7 +55,7 @@ export function ChatWidget({ clinicName }: { clinicName: string }) {
       </button>
 
       {open ? (
-        <div className="fixed bottom-24 left-5 z-50 flex h-[28rem] w-[min(22rem,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-3xl border border-mint-200 bg-white shadow-mint-lg">
+        <div className="fixed bottom-24 left-5 z-50 flex h-[28rem] w-[min(22rem,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-3xl border border-mint-200 bg-mint-25 shadow-mint-lg">
           <div className="relative overflow-hidden bg-gradient-to-l from-brand-700 to-night-900 px-4 py-3 text-white">
             <span className="dots-pattern-light absolute inset-0 opacity-20" aria-hidden />
             <p className="relative text-sm font-extrabold">پشتیبانی آنلاین</p>
@@ -82,7 +82,7 @@ export function ChatWidget({ clinicName }: { clinicName: string }) {
             ) : null}
           </div>
 
-          <div className="border-t border-mint-200 bg-white p-3">
+          <div className="border-t border-mint-200 bg-mint-50 p-3">
             <div className="mb-2 flex flex-wrap gap-2">
               {SUGGESTIONS.map((item) => (
                 <button

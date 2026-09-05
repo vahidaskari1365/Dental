@@ -140,8 +140,10 @@ export default async function HomePage() {
 
       {/* ================================ HERO ================================ */}
       <section className="relative overflow-hidden pt-10 pb-0 md:pt-14">
-        {/* بوم سبز با لایه‌های نور و الگوی برگ */}
+        {/* بوم سبز با عکس کم‌رنگ کلینیک + لایه‌های نور و الگوی برگ */}
         <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
+          <span className="hero-photo" />
+          <span className="hero-photo-tint" />
           <span className="leaf-pattern absolute inset-0" />
           <span className="aurora start-[6%] top-[-12%] h-[30rem] w-[30rem] bg-mint-300/60" />
           <span
@@ -313,7 +315,7 @@ export default async function HomePage() {
         </div>
 
         {/* نوار متحرک خدمات */}
-        <div className="relative mt-16 border-y border-mint-200 bg-white/60 backdrop-blur-md md:mt-20">
+        <div className="relative mt-16 border-y border-mint-300 bg-mint-100/75 backdrop-blur-md md:mt-20">
           <div dir="ltr" className="mask-fade-x overflow-hidden py-4">
             <div className="marquee-track gap-10">
               {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, index) => (

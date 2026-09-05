@@ -41,7 +41,8 @@ export const DEFAULT_SETTINGS = {
 
 export type SiteSettings = typeof DEFAULT_SETTINGS;
 
-export const GEO = { lat: 35.7847, lng: 51.3713 };
+// مختصات با ۵+ رقم اعشار (الزام چک‌لیست seo-local برای GeoCoordinates)
+export const GEO = { lat: 35.78472, lng: 51.37134 };
 
 export const TIME_SLOTS = [
   "۹:۰۰ - ۱۰:۰۰",

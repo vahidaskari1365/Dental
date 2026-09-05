@@ -1,0 +1,600 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Vazirmatn", "IRANSans", Tahoma, "Segoe UI", system-ui, sans-serif;
+
+  /* برند: آبی‌سبز عمیق دندانپزشکی (Deep Teal) */
+  --color-brand-50: #eef9f6;
+  --color-brand-100: #d6f0e9;
+  --color-brand-200: #ace1d5;
+  --color-brand-300: #79c9bb;
+  --color-brand-400: #45ab9d;
+  --color-brand-500: #248d82;
+  --color-brand-600: #16736d;
+  --color-brand-700: #135d5c;
+  --color-brand-800: #124b4b;
+  --color-brand-900: #103f40;
+  --color-brand-950: #07282a;
+
+  /* تیره: سبز-مشکی عمیق برای بخش‌های کنتراستی */
+  --color-night-600: #356264;
+  --color-night-700: #234c4e;
+  --color-night-800: #183b3d;
+  --color-night-900: #102d2f;
+  --color-night-950: #072022;
+
+  /* روشن: عاج/کرم گرم */
+  --color-cream-50: #fdfcfa;
+  --color-cream-100: #f7f4ee;
+  --color-cream-200: #eee9df;
+
+  /* متن: خاکستری با ته‌رنگ سبز */
+  --color-ink-50: #f4f4f1;
+  --color-ink-500: #6d7a78;
+  --color-ink-700: #3c4a49;
+  --color-ink-900: #10201f;
+
+  /* لهجه گرم کم‌مصرف */
+  --color-sand-50: #fdf7ea;
+  --color-sand-200: #f7e6c4;
+  --color-sand-400: #e8b04b;
+  --color-sand-500: #d2952f;
+  --color-sand-600: #9d6a18;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-cream-50);
+    color: var(--color-ink-900);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+    line-height: 1.22;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-200);
+    color: var(--color-brand-950);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-cream-100);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-brand-400);
+    border-radius: 999px;
+    border: 2px solid var(--color-cream-100);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-600);
+  }
+}
+
+@layer components {
+  .page-shell {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 1024px) {
+    .page-shell {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* ---------------- کارت‌ها ---------------- */
+  .surface-card,
+  .glass-card {
+    position: relative;
+    border-radius: 1.6rem;
+    background-color: #fff;
+    border: 1px solid var(--color-cream-200);
+    box-shadow: 0 1px 2px rgba(16, 32, 31, 0.03), 0 20px 44px -34px rgba(16, 63, 64, 0.35);
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.4s ease;
+  }
+
+  .surface-card:hover,
+  .glass-card:hover {
+    border-color: var(--color-brand-200);
+    box-shadow: 0 2px 4px rgba(16, 32, 31, 0.04), 0 30px 58px -34px rgba(19, 93, 92, 0.45);
+  }
+
+  .card-dark {
+    position: relative;
+    border-radius: 1.6rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .card-soft {
+    border-radius: 1.6rem;
+    background-color: var(--color-brand-50);
+    border: 1px solid var(--color-brand-100);
+  }
+
+  .ring-gradient::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(135deg, var(--color-brand-300), var(--color-sand-200), transparent 72%);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* ---------------- دکمه‌ها ---------------- */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.9rem 1.9rem;
+    font-weight: 800;
+    color: #fff;
+    background-color: var(--color-brand-700);
+    box-shadow: 0 16px 32px -18px rgba(19, 93, 92, 0.85);
+    transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-brand-800);
+    transform: translateY(-2px);
+    box-shadow: 0 22px 38px -18px rgba(19, 93, 92, 0.95);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-cream-200);
+    background-color: #fff;
+    color: var(--color-ink-900);
+    padding: 0.9rem 1.9rem;
+    font-weight: 700;
+    transition: all 0.28s ease;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-brand-300);
+    color: var(--color-brand-700);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    padding: 0.9rem 1.9rem;
+    font-weight: 700;
+    transition: all 0.28s ease;
+  }
+  .btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+    transform: translateY(-2px);
+  }
+
+  /* ---------------- نشان‌ها ---------------- */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.45rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .chip-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-brand-100);
+    background-color: var(--color-brand-50);
+    padding: 0.45rem 1.1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-brand-700);
+  }
+
+  .eyebrow-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+  .eyebrow-line::before {
+    content: "";
+    width: 1.75rem;
+    height: 2px;
+    border-radius: 999px;
+    background-color: var(--color-brand-400);
+  }
+
+  /* ---------------- الگوها ---------------- */
+  .dots-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(19, 93, 92, 0.16) 1.4px, transparent 0);
+    background-size: 18px 18px;
+  }
+
+  .dots-pattern-light {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.18) 1.4px, transparent 0);
+    background-size: 18px 18px;
+  }
+
+  .blob-img {
+    border-radius: 58% 42% 46% 54% / 52% 46% 54% 48%;
+  }
+
+  .blob-img-alt {
+    border-radius: 42% 58% 54% 46% / 46% 52% 48% 54%;
+  }
+}
+
+/* ---------------- تایپوگرافی ---------------- */
+.display-hero {
+  font-size: clamp(2.25rem, 5.8vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.1;
+}
+.display-1 {
+  font-size: clamp(1.8rem, 4vw, 2.85rem);
+  font-weight: 900;
+}
+.display-2 {
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  font-weight: 800;
+}
+
+.text-brand-solid {
+  color: var(--color-brand-700);
+}
+
+.underline-squiggle {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+.underline-squiggle::after {
+  content: "";
+  position: absolute;
+  inset-inline: -0.15em;
+  bottom: 0.05em;
+  height: 0.32em;
+  border-radius: 999px;
+  background-color: var(--color-brand-100);
+  z-index: -1;
+}
+
+/* ---------------- پس‌زمینه‌های افکت ---------------- */
+.aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  animation: auroraDrift 18s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.wash {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.75;
+  animation: auroraDrift 22s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
+}
+
+.mask-fade-x {
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* ---------------- متن مقالات ---------------- */
+.rich-text h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-ink-900);
+}
+.rich-text h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.rich-text p {
+  margin-bottom: 1rem;
+  color: var(--color-ink-700);
+}
+.rich-text ul {
+  margin-bottom: 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+}
+.rich-text li {
+  position: relative;
+  padding-inline-start: 1.5rem;
+  color: var(--color-ink-700);
+}
+.rich-text li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0.25rem;
+  top: 0.85rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background-color: var(--color-brand-400);
+}
+.rich-text strong {
+  color: var(--color-brand-700);
+  font-weight: 700;
+}
+
+/* ---------------- انیمیشن‌ها ---------------- */
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+@keyframes floatY2 {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-2deg);
+  }
+}
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.82);
+    opacity: 0.5;
+  }
+  70%,
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+@keyframes softGlow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.12);
+  }
+}
+@keyframes auroraDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(6%, -8%, 0) scale(1.14);
+  }
+  66% {
+    transform: translate3d(-7%, 6%, 0) scale(0.94);
+  }
+}
+@keyframes marqueeSlide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes shineSweep {
+  0% {
+    transform: translateX(-140%) skewX(-18deg);
+  }
+  55%,
+  100% {
+    transform: translateX(240%) skewX(-18deg);
+  }
+}
+@keyframes dotBlink {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(36, 141, 130, 0.55);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 0 9px rgba(36, 141, 130, 0);
+  }
+}
+@keyframes drawStroke {
+  from {
+    stroke-dashoffset: 1200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes scrollHint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+.anim-float {
+  animation: floatY 6s ease-in-out infinite;
+}
+.anim-float-slow {
+  animation: floatY 9s ease-in-out infinite;
+}
+.anim-float-card {
+  animation: floatY2 7s ease-in-out infinite;
+}
+.anim-spin-slow {
+  animation: spinSlow 26s linear infinite;
+}
+.anim-glow {
+  animation: softGlow 8s ease-in-out infinite;
+}
+.anim-dot {
+  animation: dotBlink 2.4s ease-in-out infinite;
+}
+.anim-pulse-ring {
+  animation: pulseRing 3.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+.anim-draw {
+  stroke-dasharray: 1200;
+  animation: drawStroke 2.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+.anim-scroll-hint {
+  animation: scrollHint 2s ease-in-out infinite;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeSlide 38s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  inset-block: -30%;
+  width: 40%;
+  inset-inline-start: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: shineSweep 5.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ظاهر شدن هنگام اسکرول */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* انیمیشن ورود اولیه صفحه */
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-float-up {
+  animation: floatUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.delay-1 {
+  animation-delay: 0.12s;
+}
+.delay-2 {
+  animation-delay: 0.26s;
+}
+.delay-3 {
+  animation-delay: 0.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-float,
+  .anim-float-slow,
+  .anim-float-card,
+  .anim-spin-slow,
+  .anim-glow,
+  .anim-dot,
+  .anim-pulse-ring,
+  .anim-draw,
+  .anim-scroll-hint,
+  .aurora,
+  .wash,
+  .marquee-track,
+  .shine::after,
+  .animate-float-up {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
